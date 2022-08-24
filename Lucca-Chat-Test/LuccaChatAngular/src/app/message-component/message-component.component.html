@@ -1,0 +1,6 @@
+<form class="form-inline" [formGroup]="messageForm" (ngSubmit)="onSubmit()">
+  <input type="text" formControlName="text" class="form-control textInput " placeholder="Your message ..." />
+  <div class="col-md-2 text-right">
+    <button class="btn btn-light btn-lg" [disabled]="!messageForm.valid">OK</button>
+    </div>
+</form>

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Hello World Lucca Chat</title>
+
+    <!-- Bootstrap and custom CSS. -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/app.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+	<script type="text/x-handlebars" data-template-name="users">
+
+
+	    <div class="container content">
+
+	    	<div class="row">
+
+	    		{{! Render each of our users as a column. }}
+	    		{{#each user in controller}}
+
+					<div class="col-md-6">
+						<div class="column">
+							<h2>{{user.name}}</h2>
+
+							<hr>
+
+							<h3>Chat</h3>
+
+							<div class="conversation scroll-container">
+
+								{{! Render the messages collection for this user. }}
+								{{#each message in user.messages itemController="message"}}
+
+									<div {{bind-attr class=":row :scroll-item message.fromMe:from-me:not-from-me"}}>
+										{{scroll-bottom}}
+										<div class="col-xs-4 sender"><div>{{message.user.name}}</div></div>
+										<div class="col-xs-8 message"><div>{{message.text}}</div></div>
+									</div>
+								{{/each}}
+							</div>
+
+							<h4>Noveau message</h4>
+
+							{{! This form binds to properties and actions on the UserController. }}
+							<div class="row">
+								<div class="col-xs-10">
+									{{input type="text" class="form-control" placeholder="Message" value=user.newMessage action="newMessage"}}
+								</div>
+								<div class="col-xs-2">
+									<button type="button" class="btn btn-info" {{action "newMessage"}}>OK</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				{{/each}}
+			</div>
+    	</div>
+	</script>
+
+
+    <!-- Dependencies and App. -->
+    <script src="js/jquery.js"></script>
+    <script src="js/handlebars.js"></script>
+    <script src="js/ember.js"></script>
+    <script src="js/app.js"></script>
+  </body>
+</html>

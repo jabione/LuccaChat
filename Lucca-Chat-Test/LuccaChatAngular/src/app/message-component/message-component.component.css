@@ -1,0 +1,6 @@
+:host .form-inline{
+    margin: 10px;
+}
+:host .textInput{
+    width:80%
+}
